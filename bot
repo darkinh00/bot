@@ -1,0 +1,27 @@
+import discord
+from discord.ext import commands
+import random
+
+description = '''An example bot to showcase the discord.ext.commands extension
+module.
+
+There are a number of utility commands being showcased here.'''
+
+intents = discord.Intents.default()
+intents.members = True
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.command()
+async def joined(ctx, member: discord.Member):
+    """Says when a member joined."""
+    await ctx.send(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
+
+@bot.command()
+async def add(ctx, left: int, right: int):
+    """Adds two numbers together."""
+    await ctx.send(left + right)
+
+
+bot.run("MTQ3ODQ2ODExOTUzNzI1NDUzNA.GVskCi.p9e3LMEwRyZBO5vsOA-nm-ywM0mGR_LAEOteVY")
