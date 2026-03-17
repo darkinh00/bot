@@ -13,15 +13,19 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='$', intents=intents)
 
+@bot.event
+async def on_ready():
+    print(f'Logged in as {bot.user} (ID: {bot.user.id})')
+    print('------')
+
+@bot.command(description='For when you wanna settle the score some other way')
+async def choose(ctx, *choices: str):
+    """Chooses between multiple choices."""
+    await ctx.send(random.choice(choices))
+
 @bot.command()
 async def joined(ctx, member: discord.Member):
     """Says when a member joined."""
     await ctx.send(f'{member.name} joined {discord.utils.format_dt(member.joined_at)}')
 
-@bot.command()
-async def add(ctx, left: int, right: int):
-    """Adds two numbers together."""
-    await ctx.send(left + right)
-
-
-bot.run("MTQ3ODQ2ODExOTUzNzI1NDUzNA.GVskCi.p9e3LMEwRyZBO5vsOA-nm-ywM0mGR_LAEOteVY")
+bot.run("ESCREVA SEU TOKEN AQUI")
